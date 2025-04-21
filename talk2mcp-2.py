@@ -16,7 +16,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
 client = genai.GenerativeModel("gemini-2.0-flash")
 
-max_iterations = 3
+max_iterations = 6
 last_response = None
 iteration = 0
 iteration_response = []
@@ -126,22 +126,22 @@ You must respond with EXACTLY ONE line in one of these formats (no additional te
    FUNCTION_CALL: function_name|param1|param2|...
    
 2. For final answers:
-   FINAL_ANSWER: [number]
+   FINAL_ANSWER: String
 
 Important:
 - When a function returns multiple values, you need to process all of them
-- Only give FINAL_ANSWER when you have completed all necessary calculations
+- Only give FINAL_ANSWER when you have added the result in text in Microsoft Paint.
 - Do not repeat function calls with the same parameters
 
 Examples:
 - FUNCTION_CALL: add|5|3
 - FUNCTION_CALL: strings_to_chars_to_int|INDIA
-- FINAL_ANSWER: [42]
+- FINAL_ANSWER: Result added to Paint successfully!!
 
 DO NOT include any explanations or additional text.
 Your entire response should be a single line starting with either FUNCTION_CALL: or FINAL_ANSWER:"""
 
-                query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. """
+                query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. Let's call this returned value result. Open Microsoft Paint and draw a rectangle at co-ordinates (810,590) to (1120,770) and add the result in text in Microsoft Paint."""
                 print("Starting iteration loop...")
                 
                 # Use global iteration variables
@@ -267,32 +267,32 @@ Your entire response should be a single line starting with either FUNCTION_CALL:
 
                     elif response_text.startswith("FINAL_ANSWER:"):
                         print("\n=== Agent Execution Complete ===")
-                        result = await session.call_tool("open_paint")
-                        print(result.content[0].text)
-
-                        # Wait longer for Paint to be fully maximized
-                        await asyncio.sleep(1)
-
-                        # Draw a rectangle
-                        result = await session.call_tool(
-                            "draw_rectangle",
-                            arguments={
-                                "x1": 810,
-                                "y1": 590,
-                                "x2": 1120,
-                                "y2": 770
-                            }
-                        )
-                        print(result.content[0].text)
-
-                        # Draw rectangle and add text
-                        result = await session.call_tool(
-                            "add_text_in_paint",
-                            arguments={
-                                "text": response_text
-                            }
-                        )
-                        print(result.content[0].text)
+                        #result = await session.call_tool("open_paint")
+                        #print(result.content[0].text)
+                        #
+                        ## Wait longer for Paint to be fully maximized
+                        #await asyncio.sleep(1)
+                        #
+                        ## Draw a rectangle
+                        #result = await session.call_tool(
+                        #    "draw_rectangle",
+                        #    arguments={
+                        #        "x1": 810,
+                        #        "y1": 590,
+                        #        "x2": 1120,
+                        #        "y2": 770
+                        #    }
+                        #)
+                        #print(result.content[0].text)
+                        #
+                        ## Draw rectangle and add text
+                        #result = await session.call_tool(
+                        #    "add_text_in_paint",
+                        #    arguments={
+                        #        "text": response_text
+                        #    }
+                        #)
+                        #print(result.content[0].text)
                         break
 
                     iteration += 1

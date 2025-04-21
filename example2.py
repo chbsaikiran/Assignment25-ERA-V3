@@ -212,7 +212,7 @@ async def draw_rectangle(x1: int, y1: int, x2: int, y2: int) -> dict:
 
 @mcp.tool()
 async def add_text_in_paint(text: str) -> dict:
-    """Add text in Paint"""
+    """Add text in Microsoft Paint"""
     global paint_app
     try:
         if not paint_app:
@@ -261,7 +261,7 @@ async def add_text_in_paint(text: str) -> dict:
             "content": [
                 TextContent(
                     type="text",
-                    text=f"Text:'{text}' added successfully"
+                    text=f"Text:'{text}' Result added to Paint successfully!!"
                 )
             ]
         }
@@ -277,7 +277,7 @@ async def add_text_in_paint(text: str) -> dict:
 
 @mcp.tool()
 async def open_paint() -> dict:
-    """Open Microsoft Paint maximized on secondary monitor"""
+    """Open Microsoft Paint maximize it"""
     global paint_app
     try:
         paint_app = Application().start('mspaint.exe')
@@ -306,7 +306,7 @@ async def open_paint() -> dict:
             "content": [
                 TextContent(
                     type="text",
-                    text="Paint opened successfully on secondary monitor and maximized"
+                    text="Paint opened successfully monitor and maximized"
                 )
             ]
         }
