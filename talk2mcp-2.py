@@ -141,7 +141,7 @@ Examples:
 DO NOT include any explanations or additional text.
 Your entire response should be a single line starting with either FUNCTION_CALL: or FINAL_ANSWER:"""
 
-                query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. Let's call this returned value result. Open Microsoft Paint and draw a rectangle at co-ordinates (810,590) to (1120,770) and add the result in text in Microsoft Paint."""
+                query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. Let's call this resulting float value answer. Now open Microsoft Paint and draw a rectangle at co-ordinates (810,590) to (1120,770) and then display the answer in Microsoft Paint."""
                 print("Starting iteration loop...")
                 
                 # Use global iteration variables
