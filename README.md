@@ -6,3 +6,4 @@ pipx install uv</br>
 </br>
 uv pip install -r requirements.txt</br>
 uv run mcp dev example2.py</br>
+uv run python talk2mcp-2.py</br>
