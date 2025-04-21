@@ -180,7 +180,7 @@ async def draw_rectangle(x1: int, y1: int, x2: int, y2: int) -> dict:
             time.sleep(0.2)
         
         # Click on the Rectangle tool using the correct coordinates for secondary screen
-        paint_window.click_input(coords=(530, 82 ))
+        paint_window.click_input(coords=(658, 105 ))
         time.sleep(0.2)
         
         # Get the canvas area
@@ -188,9 +188,9 @@ async def draw_rectangle(x1: int, y1: int, x2: int, y2: int) -> dict:
         
         # Draw rectangle - coordinates should already be relative to the Paint window
         # No need to add primary_width since we're clicking within the Paint window
-        canvas.press_mouse_input(coords=(x1+2560, y1))
-        canvas.move_mouse_input(coords=(x2+2560, y2))
-        canvas.release_mouse_input(coords=(x2+2560, y2))
+        canvas.press_mouse_input(coords=(x1, y1))
+        canvas.move_mouse_input(coords=(x2, y2))
+        canvas.release_mouse_input(coords=(x2, y2))
         
         return {
             "content": [
@@ -234,7 +234,7 @@ async def add_text_in_paint(text: str) -> dict:
             time.sleep(0.5)
         
         # Click on the Rectangle tool
-        paint_window.click_input(coords=(528, 92))
+        paint_window.click_input(coords=(840, 690))
         time.sleep(0.5)
         
         # Get the canvas area
@@ -247,7 +247,7 @@ async def add_text_in_paint(text: str) -> dict:
         time.sleep(0.5)
         
         # Click where to start typing
-        canvas.click_input(coords=(810, 533))
+        canvas.click_input(coords=(840, 690))
         time.sleep(0.5)
         
         # Type the text passed from client
@@ -255,7 +255,7 @@ async def add_text_in_paint(text: str) -> dict:
         time.sleep(0.5)
         
         # Click to exit text mode
-        canvas.click_input(coords=(1050, 800))
+        canvas.click_input(coords=(1050, 700))
         
         return {
             "content": [
@@ -290,13 +290,13 @@ async def open_paint() -> dict:
         primary_width = GetSystemMetrics(0)
         
         # First move to secondary monitor without specifying size
-        win32gui.SetWindowPos(
-            paint_window.handle,
-            win32con.HWND_TOP,
-            primary_width + 1, 0,  # Position it on secondary monitor
-            0, 0,  # Let Windows handle the size
-            win32con.SWP_NOSIZE  # Don't change the size
-        )
+        #win32gui.SetWindowPos(
+        #    paint_window.handle,
+        #    win32con.HWND_TOP,
+        #    primary_width + 1, 0,  # Position it on secondary monitor
+        #    0, 0,  # Let Windows handle the size
+        #    win32con.SWP_NOSIZE  # Don't change the size
+        #)
         
         # Now maximize the window
         win32gui.ShowWindow(paint_window.handle, win32con.SW_MAXIMIZE)

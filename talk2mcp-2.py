@@ -277,10 +277,10 @@ Your entire response should be a single line starting with either FUNCTION_CALL:
                         result = await session.call_tool(
                             "draw_rectangle",
                             arguments={
-                                "x1": 780,
-                                "y1": 380,
-                                "x2": 1140,
-                                "y2": 700
+                                "x1": 810,
+                                "y1": 590,
+                                "x2": 1120,
+                                "y2": 770
                             }
                         )
                         print(result.content[0].text)
