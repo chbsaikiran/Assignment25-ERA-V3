@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 import asyncio
-from google import genai
+import google.generativeai as genai
 from concurrent.futures import TimeoutError
 from functools import partial
 
@@ -12,7 +12,9 @@ load_dotenv()
 
 # Access your API key and initialize Gemini client correctly
 api_key = os.getenv("GEMINI_API_KEY")
-client = genai.Client(api_key=api_key)
+#client = genai.Client(api_key=api_key)
+genai.configure(api_key=api_key)
+client = genai.GenerativeModel("gemini-2.0-flash")
 
 max_iterations = 3
 last_response = None
@@ -28,10 +30,7 @@ async def generate_with_timeout(client, prompt, timeout=10):
         response = await asyncio.wait_for(
             loop.run_in_executor(
                 None, 
-                lambda: client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=prompt
-                )
+                lambda: client.generate_content(prompt)
             ),
             timeout=timeout
         )
